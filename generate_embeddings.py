@@ -1,19 +1,25 @@
 from sentence_transformers import SentenceTransformer
 import firebase_admin
 from firebase_admin import credentials, firestore
+import os
+import json
 
-# 🔌 Firebase setup
-if not firebase_admin._apps:
-    cred = credentials.Certificate(
-        "thewill-c232a-firebase-adminsdk-kcl17-e81cd4e648.json")
-    firebase_admin.initialize_app(cred)
-
-db = firestore.client()
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
 
 def generate_embedding_for_user(user_data):
-    # Extract necessary fields
+    # 🔌 Initialize Firebase inside the function
+    if not firebase_admin._apps:
+        firebase_json = os.environ.get("FIREBASE_CREDENTIALS")
+        if not firebase_json:
+            raise ValueError("FIREBASE_CREDENTIALS env var is missing!")
+
+        firebase_dict = json.loads(firebase_json)
+        cred = credentials.Certificate(firebase_dict)
+        firebase_admin.initialize_app(cred)
+
+    db = firestore.client()
+
     uid = user_data.get("uid")
     if not uid:
         raise ValueError("Missing UID")
