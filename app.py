@@ -2,9 +2,9 @@ import os
 from flask import Flask, request, jsonify
 from generate_embeddings import generate_embedding_for_user
 
+
 app = Flask(__name__)
 
-# 👇 Secret token stored securely (we’ll pass this via Render env variable)
 SECRET_TOKEN = os.environ.get("EMBED_API_SECRET")
 
 
