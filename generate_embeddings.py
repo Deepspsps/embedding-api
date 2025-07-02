@@ -4,8 +4,7 @@ from firebase_admin import credentials, firestore
 import os
 import json
 
-
-model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
+model = SentenceTransformer("sentence-transformers/paraphrase-albert-small-v2")
 
 
 def generate_embedding_for_user(user_data):

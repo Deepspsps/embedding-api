@@ -8,7 +8,7 @@ cred = credentials.Certificate(
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
+model = SentenceTransformer("sentence-transformers/paraphrase-albert-small-v2")
 
 # 🔁 Loop through patients
 users_ref = db.collection("users")
