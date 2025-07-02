@@ -8,8 +8,7 @@ cred = credentials.Certificate(
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-# 🤖 Load local embedding model
-model = SentenceTransformer("all-MiniLM-L6-v2")
+model = SentenceTransformer("paraphrase-MiniLM-L3-v2")
 
 # 🔁 Loop through patients
 users_ref = db.collection("users")
