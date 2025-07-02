@@ -2,9 +2,9 @@ import os
 from flask import Flask, request, jsonify
 from generate_embeddings import generate_embedding_for_user
 
+print("🚀 Starting Flask setup...")  # New line
 
 app = Flask(__name__)
-
 SECRET_TOKEN = os.environ.get("EMBED_API_SECRET")
 
 
@@ -26,7 +26,7 @@ def generate():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # ✅ Convert env to int
+    print("🌐 Preparing to run Flask...")  # New line
+    port = int(os.environ.get("PORT", 5000))
+    print(f"✅ Running on port: {port}")  # New line
     app.run(host="0.0.0.0", port=port)
-
-# bas yaar ab
